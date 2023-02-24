@@ -1,0 +1,26 @@
+{
+    "name": "Uhr",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "pxt-oled-ssd1306": "github:MKleinSB/pxt-OLED-SSD1306#v0.0.5",
+        "pxt-oledpaint": "github:MKleinSB/pxt-OLEDpaint#v1.2.1"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "main.py"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "4.0.29",
+        "targetId": "calliopemini"
+    },
+    "supportedTargets": [
+        "calliopemini"
+    ],
+    "preferredEditor": "pyprj"
+}
