@@ -5,7 +5,7 @@ timeMenu = False
 twelvehours = False
 twelve = True
 timerMenu = False
-Timer = False
+timer = False
 blink = False
 cursor_line = 0
 selected = 0
@@ -50,10 +50,10 @@ def anim(speed: number = 1):
         kitronik_VIEW128x64.draw_rect(10, 10, rect2x, rect2y)
         basic.pause(time)
     if rect1x == rect2x:
-        timer()
+        startTimer()
 
 #Third
-def timer():
+def startTimer():
     while True:
         oledssd1306.clear_display()
         s + 1
@@ -89,7 +89,7 @@ def timer():
             openTimeMenu()
         elif timerMenu:
             openTimerMenu()    
-        if Timer:
+        if timer:
             if (th == h):
                 if (tm == m):
                     for i in range(1, 10):
@@ -236,7 +236,7 @@ def openTimerMenu():
             selected = 0
             timerMenu = False
             menu = True
-            Timer = True
+            timer = True
             pass
         input.on_button_event(Button.A, input.button_event_click(), on_button_event_a)
         if (selected == 0):

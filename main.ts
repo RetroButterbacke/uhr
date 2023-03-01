@@ -5,7 +5,7 @@ let timeMenu = false
 let twelvehours = false
 let twelve = true
 let timerMenu = false
-let Timer = false
+let timer = false
 let blink = false
 let cursor_line = 0
 let selected = 0
@@ -50,13 +50,13 @@ function anim(speed: number = 1) {
         basic.pause(time)
     }
     if (rect1x == rect2x) {
-        timer()
+        startTimer()
     }
     
 }
 
 // Third
-function timer() {
+function startTimer() {
     let s: number;
     let m: number;
     let h: number;
@@ -114,7 +114,7 @@ function timer() {
             openTimerMenu()
         }
         
-        if (Timer) {
+        if (timer) {
             if (th == h) {
                 if (tm == m) {
                     for (let i = 1; i < 10; i++) {
@@ -322,13 +322,13 @@ function openTimerMenu() {
         let selected: number;
         let timerMenu: boolean;
         let menu: boolean;
-        let Timer: boolean;
+        let timer: boolean;
         selected + 1
         if (selected > 1) {
             selected = 0
             timerMenu = false
             menu = true
-            Timer = true
+            timer = true
             
         }
         
