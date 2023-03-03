@@ -35,7 +35,7 @@ def anim(speed: number = 1):
     tan = ak / gk
     angle = Math.atan(tan)
     sin = Math.sin(angle)
-    hy = sin / gk
+    hy = gk / sin
     cos = Math.cos(angle)
     time = hy * speed
     kitronik_VIEW128x64.draw_rect(10, 10, 0, 64)
