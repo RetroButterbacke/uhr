@@ -42,10 +42,10 @@ def anim(speed: number = 1):
     kitronik_VIEW128x64.draw_rect(10, 10, 128, 0)
     while rect1x != rect2x:
         oledssd1306.clear_display()
-        rect1x + cos
-        rect2x - cos
-        rect1y - 2 * sin
-        rect2y + 2 * sin
+        rect1x + cos * 2
+        rect2x - cos * 2
+        rect1y - in
+        rect2y + sin
         kitronik_VIEW128x64.draw_rect(10, 10, rect1x, rect1y)
         kitronik_VIEW128x64.draw_rect(10, 10, rect2x, rect2y)
         basic.pause(time)
