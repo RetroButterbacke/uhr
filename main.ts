@@ -20,6 +20,7 @@ let th = 0
 let tm = 0
 // First
 function startClock() {
+    oledssd1306.turnOn()
     oledssd1306.initDisplay()
     oledssd1306.setTextXY(48, 32)
     oledssd1306.writeString(name)
@@ -34,17 +35,17 @@ function anim(speed: number = 1) {
     let tan = ak / gk
     let angle = Math.atan(tan)
     let sin = Math.sin(angle)
-    let hy = sin / gk
+    let hy = gk / sin
     let cos = Math.cos(angle)
     let time = hy * speed
     kitronik_VIEW128x64.drawRect(10, 10, 0, 64)
     kitronik_VIEW128x64.drawRect(10, 10, 128, 0)
     while (rect1x != rect2x) {
         oledssd1306.clearDisplay()
-        rect1x + cos
-        rect2x - cos
-        rect1y - 2 * sin
-        rect2y + 2 * sin
+        rect1x + cos * 2
+        rect2x - cos * 2
+        rect1y - sin
+        rect2y + sin
         kitronik_VIEW128x64.drawRect(10, 10, rect1x, rect1y)
         kitronik_VIEW128x64.drawRect(10, 10, rect2x, rect2y)
         basic.pause(time)

@@ -22,6 +22,7 @@ tm = 0
 
 #First
 def startClock():
+    oledssd1306.turn_on()
     oledssd1306.init_display()
     oledssd1306.set_text_xy(48, 32)
     oledssd1306.write_string(name)
@@ -44,7 +45,7 @@ def anim(speed: number = 1):
         oledssd1306.clear_display()
         rect1x + cos * 2
         rect2x - cos * 2
-        rect1y - in
+        rect1y - sin
         rect2y + sin
         kitronik_VIEW128x64.draw_rect(10, 10, rect1x, rect1y)
         kitronik_VIEW128x64.draw_rect(10, 10, rect2x, rect2y)
