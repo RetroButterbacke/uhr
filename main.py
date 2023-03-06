@@ -103,8 +103,10 @@ def draw():
     if dot:
         kitronik_VIEW128x64.draw_rect(10, 10, rect1x, rect1y)
         kitronik_VIEW128x64.draw_rect(10, 10, rect2x, rect2y)
+        dot = False
     if h < 10:
         kitronik_VIEW128x64.drawnum(h, rect1x - 2)
+        dot = 
     else:
         kitronik_VIEW128x64.drawnum(h, rect1x - 4)
     kitronik_VIEW128x64.drawnum(m, rect1x + 2)
