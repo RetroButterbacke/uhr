@@ -1,24 +1,26 @@
 let name = "CalliopeClock"
-let clock = true
+let s = 0
+let m = 0
+let h = 0
+let tm = 0
+let th = 0
+let rect1x = 0
+let rect1y = 0
+let rect2y = 0
+let rect2x = 0
+let cursor_line = 0
+let dot = false
+let twelve = false
+let clock = false
+let blink = false
+let timerMenu = false
+let twelvehours = false
+clock = true
+twelve = true
 let menu = false
 let timeMenu = false
-let twelvehours = false
-let twelve = true
-let timerMenu = false
 let timer = false
-let blink = false
-let cursor_line = 0
-let selected = 0
-let rect1y = 0
-let rect1x = 0
-let rect2x = 64
-let rect2y = 128
-let h = 0
-let m = 0
-let s = 0
-let th = 0
-let tm = 0
-// First
+//  First
 function startClock() {
     oledssd1306.turnOn()
     oledssd1306.initDisplay()
@@ -26,6 +28,24 @@ function startClock() {
     oledssd1306.writeString(name)
     basic.pause(2000)
     anim()
+}
+
+function draw() {
+    let dot = true
+    if (dot) {
+        kitronik_VIEW128x64.drawRect(10, 10, rect1x, rect1y)
+        kitronik_VIEW128x64.drawRect(10, 10, rect2x, rect2y)
+        dot = false
+    }
+    
+    if (h < 10) {
+        kitronik_VIEW128x64.drawnum(h, rect1x - 2)
+        dot = false
+    } else {
+        kitronik_VIEW128x64.drawnum(h, rect1x - 4)
+    }
+    
+    kitronik_VIEW128x64.drawnum(m, rect1x + 2)
 }
 
 // Second
@@ -56,11 +76,12 @@ function anim(speed: number = 1) {
     
 }
 
-// Third
+//  Third
 function startTimer() {
     let s: number;
     let m: number;
     let h: number;
+    let j: number;
     let Timer: boolean;
     while (true) {
         oledssd1306.clearDisplay()
@@ -103,7 +124,6 @@ function startTimer() {
                 menu = false
             }
             
-            
         })
         if (clock) {
             draw()
@@ -118,7 +138,8 @@ function startTimer() {
         if (timer) {
             if (th == h) {
                 if (tm == m) {
-                    for (let i = 1; i < 10; i++) {
+                    j = 0
+                    for (j = 1; j < 10; j++) {
                         music.playTone(Note.C, music.beat())
                         Timer = false
                     }
@@ -132,25 +153,7 @@ function startTimer() {
     }
 }
 
-function draw() {
-    let dot = true
-    if (dot) {
-        kitronik_VIEW128x64.drawRect(10, 10, rect1x, rect1y)
-        kitronik_VIEW128x64.drawRect(10, 10, rect2x, rect2y)
-        dot = false
-    }
-    
-    if (h < 10) {
-        kitronik_VIEW128x64.drawnum(h, rect1x - 2)
-        dot = false
-    } else {
-        kitronik_VIEW128x64.drawnum(h, rect1x - 4)
-    }
-    
-    kitronik_VIEW128x64.drawnum(m, rect1x + 2)
-}
-
-// Fourth
+//  Fourth
 function open_menu() {
     oledssd1306.setTextXY(50, 4)
     oledssd1306.writeString("Settings")
@@ -176,12 +179,11 @@ function open_menu() {
     }
     
     input.onButtonEvent(Button.A, input.buttonEventClick(), function on_button_event_a() {
-        let cursor_line: number;
-        cursor_line + 1
-        if (cursor_line > 2) {
-            cursor_line = 0
+        let cursor_line2: number;
+        cursor_line2 + 1
+        if (cursor_line2 > 2) {
+            cursor_line2 = 0
         }
-        
         
     })
     input.onButtonEvent(Button.B, input.buttonEventClick(), function on_button_event_b() {
@@ -198,12 +200,12 @@ function open_menu() {
             timerMenu == true
         }
         
-        
     })
 }
 
-// Fith/Six
+//  Fith/Six
 function openTimeMenu() {
+    let selected = 0
     function on_button_event_a() {
         let h: number;
         h + 1
@@ -222,7 +224,6 @@ function openTimeMenu() {
             
         }
         
-        
     }
     
     function on_button_event_c() {
@@ -235,7 +236,6 @@ function openTimeMenu() {
             timeMenu = false
             menu = true
         }
-        
         
     }
     
@@ -268,7 +268,6 @@ function openTimeMenu() {
                 h + 1
             }
             
-            
         })
         input.onButtonEvent(Button.B, input.buttonEventClick(), on_button_event_c)
         if (blink) {
@@ -298,7 +297,7 @@ function openTimeMenu() {
     
 }
 
-// Fith/Six
+//  Fith/Six
 function openTimerMenu() {
     function on_button_event_a() {
         let th: number;
@@ -318,7 +317,6 @@ function openTimerMenu() {
             
         }
         
-        
     }
     
     function on_button_event_c() {
@@ -332,7 +330,6 @@ function openTimerMenu() {
             timerMenu = false
             menu = true
             timer = true
-            
         }
         
         input.onButtonEvent(Button.A, input.buttonEventClick(), on_button_event_a)
@@ -362,7 +359,6 @@ function openTimerMenu() {
                 if (tm >= 60) {
                     tm = 0
                     th + 1
-                    
                 }
                 
             })
